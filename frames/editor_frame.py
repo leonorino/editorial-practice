@@ -5,7 +5,34 @@ from PIL import Image, ImageTk, ImageFilter, ImageDraw
 
 
 class EditorFrame(tk.Frame):
+    """
+    A frame that displays an image and provides various editing tools.
+
+    Attributes:
+        parent (App): The parent application window.
+        image_label (tkinter.Label): The label that displays the edited image.
+        original (PIL.Image.Image): The original image.
+        image (PIL.Image.Image): The currently edited image.
+        rect_entry (tkinter.Entry): The entry field for rectangle coordinates.
+        averaging_scale (tkinter.Scale): The scale for adjusting the averaging filter size.
+
+    Methods:
+        redraw_image(): Resizes the edited image and displays it in the image label.
+        channel(channel_name): Displays the specified color channel of the image.
+        revert(): Reverts the image to its original state.
+        grayscale(): Converts the image to grayscale.
+        average(): Applies an averaging filter to the image.
+        draw_rect(): Draws a blue rectangle on the image based on the coordinates entered in the rect_entry.
+    """
+
     def __init__(self, parent):
+        """
+        Initializes the editor frame and sets up the editing tools.
+
+        Args:
+            parent (App): The parent application window.
+        """
+
         super().__init__(parent)
         self.parent = parent
 
@@ -54,6 +81,10 @@ class EditorFrame(tk.Frame):
         self.redraw_image()
 
     def redraw_image(self):
+        """
+        Resizes the edited image and displays it in the image label.
+        """
+
         safe_width = int(self.parent.winfo_screenwidth() * 0.5)
         safe_height = int(self.parent.winfo_screenheight() * 0.5)
 
@@ -64,6 +95,13 @@ class EditorFrame(tk.Frame):
         self.image_label.configure(image=tk_image)
 
     def channel(self, channel_name):
+        """
+        Displays the specified color channel of the image.
+
+        Args:
+            channel_name (str): The name of the color channel ('R', 'G', or 'B').
+        """
+
         blank = Image.new('L', self.original.size, 0)
         red = self.original.getchannel('R') if channel_name == 'R' else blank
         green = self.original.getchannel('G') if channel_name == 'G' else blank
@@ -73,18 +111,34 @@ class EditorFrame(tk.Frame):
         self.redraw_image()
 
     def revert(self):
+        """
+        Reverts the image to its original state.
+        """
+
         self.image = self.original.copy()
         self.redraw_image()
 
     def grayscale(self):
+        """
+        Converts the image to grayscale.
+        """
+
         self.image = self.original.convert('L')
         self.redraw_image()
 
     def average(self):
+        """
+        Applies an averaging filter to the image.
+        """
+
         self.image = self.original.filter(ImageFilter.BoxBlur(radius=self.averaging_scale.get()))
         self.redraw_image()
 
     def draw_rect(self):
+        """
+        Draws a blue rectangle on the image based on the coordinates entered in the rect_entry.
+        """
+
         pattern = r'^(\d+),(\d+),(\d+),(\d+)$'
         match = re.match(pattern, self.rect_entry.get())
         is_good = True

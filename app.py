@@ -3,7 +3,27 @@ import frames
 
 
 class App(tk.Tk):
+    """
+    Main application class.
+
+    Attributes:
+        current_frame (tkinter.Frame): The currently displayed frame.
+        edited_image (PIL.Image.Image): The image currently being edited.
+
+    Methods:
+        recenter(): Centers the application window on the screen.
+        resize(): Resizes the application window.
+        get_required_size(): Returns the required size of the application window.
+        show_menu(): Displays the menu frame.
+        show_camera(): Displays the camera frame.
+        show_editor(): Displays the editor frame.
+    """
+
     def __init__(self):
+        """
+        Initializes the application window and sets the title.
+        """
+
         super().__init__()
         self.title('Редактор')
 
@@ -14,6 +34,10 @@ class App(tk.Tk):
         self.recenter()
 
     def recenter(self):
+        """
+        Centers the application window on the screen based on the required size.
+        """
+
         width, height = self.get_required_size()
 
         screen_width = self.winfo_screenwidth()
@@ -24,10 +48,21 @@ class App(tk.Tk):
         self.geometry(f'{width}x{height}+{x}+{y}')
 
     def resize(self):
+        """
+        Resizes the application window based on the required size.
+        """
+
         width, height = self.get_required_size()
         self.geometry(f'{width}x{height}')
 
     def get_required_size(self):
+        """
+        Returns the required size of the application window.
+
+        Returns:
+            tuple: The required width and height of the application window.
+        """
+
         self.update_idletasks()
 
         if self.current_frame is None:
@@ -40,6 +75,10 @@ class App(tk.Tk):
         return (width, height)
 
     def show_menu(self):
+        """
+        Displays the menu frame and centers the application window.
+        """
+
         if self.current_frame is not None:
             self.current_frame.destroy()
 
@@ -48,6 +87,10 @@ class App(tk.Tk):
         self.recenter()
 
     def show_camera(self):
+        """
+        Displays the camera frame and centers the application window.
+        """
+
         if self.current_frame is not None:
             self.current_frame.destroy()
 
@@ -56,6 +99,10 @@ class App(tk.Tk):
         self.recenter()
 
     def show_editor(self):
+        """
+        Displays the editor frame and centers the application window.
+        """
+
         if self.current_frame is not None:
             self.current_frame.destroy()
 
