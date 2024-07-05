@@ -31,7 +31,7 @@ class CameraFrame(tk.Frame):
         super().__init__(parent)
         self.parent = parent
 
-        for i in range(2, 0, -1):
+        for i in range(2, -1, -1):
             capture = cv2.VideoCapture(i)
             if capture.isOpened():
                 self.video_capture = capture
