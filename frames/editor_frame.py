@@ -69,7 +69,7 @@ class EditorFrame(tk.Frame):
 
         width, height = self.original.width, self.original.height
         self.rect_entry = tk.Entry(self)
-        rect_label = tk.Label(self, text='Координаты правой верхней и левой нижней вершин синего прямоугольника: x1,y1,x2,y2')
+        rect_label = tk.Label(self, text='Координаты левой верхней и правой нижней вершин синего прямоугольника: x1,y1,x2,y2')
         rect_otherlabel = tk.Label(self, text=f'x - [0; {width}], y - [0; {height}]')
         self.rect_entry.pack()
         rect_label.pack()
