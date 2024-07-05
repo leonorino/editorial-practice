@@ -108,3 +108,5 @@ class App(tk.Tk):
 
         self.current_frame = frames.EditorFrame(self)
         self.current_frame.pack()
+
+        self.recenter()

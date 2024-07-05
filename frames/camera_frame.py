@@ -38,6 +38,7 @@ class CameraFrame(tk.Frame):
                 break
         else:
             mb.showerror(title='Ошибка', message='Не удалось определить камеру')
+            self.parent.show_menu()
 
         self.video_label = tk.Label(self)
         self.video_label.pack()
