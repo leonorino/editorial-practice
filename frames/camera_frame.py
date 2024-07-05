@@ -21,7 +21,7 @@ class CameraFrame(tk.Frame):
     """
 
     def __init__(self, parent):
-         """
+        """
         Initializes the camera frame and sets up the camera capture.
 
         Args:
