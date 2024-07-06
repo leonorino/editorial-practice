@@ -78,6 +78,9 @@ class EditorFrame(tk.Frame):
         draw_button = tk.Button(self, text='Нарисовать', command=self.draw_rect)
         draw_button.pack()
 
+        close_button = tk.Button(self, text='Закрыть окно', command=self.parent.destroy)
+        close_button.pack()
+
         self.redraw_image()
 
     def redraw_image(self):
