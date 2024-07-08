@@ -50,6 +50,9 @@ class CameraFrame(tk.Frame):
         submit_button.pack(side='left')
         button_frame.pack()
 
+        close_button = tk.Button(self, text='Закрыть окно', command=self.parent.destroy)
+        close_button.pack()
+
         self.update_camera()
 
     def get_image(self):

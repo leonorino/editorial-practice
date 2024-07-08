@@ -35,12 +35,14 @@ class MenuFrame(tk.Frame):
         super().__init__(parent)
         self.parent = parent
 
-        self.file_button = tk.Button(self, text='Выбрать файл с изображением',
+        file_button = tk.Button(self, text='Выбрать файл с изображением',
                 command=self.pick_file)
-        self.camera_button = tk.Button(self, text='Использовать камеру',
+        camera_button = tk.Button(self, text='Использовать камеру',
                 command=parent.show_camera)
-        self.file_button.pack()
-        self.camera_button.pack()
+        close_button = tk.Button(self, text='Закрыть окно', command=self.parent.destroy)
+        file_button.pack()
+        camera_button.pack()
+        close_button.pack()
 
     def pick_file(self):
         """
